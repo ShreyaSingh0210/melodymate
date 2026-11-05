@@ -1,0 +1,10 @@
+numpy
+librosa
+soundfile
+mido
+python-rtmidi
+pytest
+fastapi
+uvicorn
+python-multipart
+httpx
