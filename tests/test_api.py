@@ -89,3 +89,7 @@ def test_too_short():
 @pytest.mark.parametrize("melody,mode", [("nope", "exact"), ("c_major_up", "nope")])
 def test_unknown_melody_or_mode(melody, mode):
     assert post(silent_wav(1), melody, mode).status_code == 400
+    def test_empty_upload():
+    r = post(b"")
+    assert r.status_code == 400
+    assert "readable WAV" in r.json()["detail"]
