@@ -141,15 +141,32 @@ async function playRef() {
     throw new Error("Could not connect to the MelodyMate server. Make sure the server window is running.");
   }
   if (!r.ok) throw new Error("The reference melody could not be loaded.");
-  const url = URL.createObjectURL(await r.blob());
-  const audio = new Audio(url);
-  currentAudio = audio;
-  await new Promise((resolve, reject) => {
-    audio.onended = () => { currentAudio = null; resolve(); };
-    audio.onerror = (e) => { currentAudio = null; reject(e); };
-    audio.play().catch((e) => { currentAudio = null; reject(e); });
-  });
-  URL.revokeObjectURL(url);
+
+const url = URL.createObjectURL(await r.blob());
+const audio = new Audio(url);
+currentAudio = audio;
+
+try {
+    await new Promise((resolve, reject) => {
+        audio.onended = () => {
+            currentAudio = null;
+            resolve();
+        };
+
+        audio.onerror = (e) => {
+            currentAudio = null;
+            reject(e);
+        };
+
+        audio.play().catch((e) => {
+            currentAudio = null;
+            reject(e);
+        });
+    });
+} finally {
+    URL.revokeObjectURL(url);
+}
+
 }
 
 async function beep(times) {
