@@ -148,21 +148,25 @@ currentAudio = audio;
 
 try {
     await new Promise((resolve, reject) => {
-        audio.onended = () => {
-            currentAudio = null;
-            resolve();
-        };
+  audio.onended = () => {
+    currentAudio = null;
+    resolve();
+  };
 
-        audio.onerror = (e) => {
-            currentAudio = null;
-            reject(e);
-        };
+  audio.onpause = () => {
+    if (currentAudio !== audio) resolve();
+  };
 
-        audio.play().catch((e) => {
-            currentAudio = null;
-            reject(e);
-        });
-    });
+  audio.onerror = (e) => {
+    currentAudio = null;
+    reject(e);
+  };
+
+  audio.play().catch((e) => {
+    currentAudio = null;
+    reject(e);
+  });
+});
 } finally {
     URL.revokeObjectURL(url);
 }
