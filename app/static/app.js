@@ -1,4 +1,4 @@
-// MelodyMate singing page.
+// MELODY SINGING PAGE. 
 // Accessible hands-free music practice for blind and visually impaired users.
 const $ = (id) => document.getElementById(id);
 const status = $("status"), details = $("details");
