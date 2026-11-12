@@ -1,4 +1,4 @@
-# MelodyMate
+# MELODYMATE
 
 MelodyMate is an accessible music learning application designed to make basic music practice easier to navigate for people who are blind or visually impaired. It combines voice-guided instructions, spoken feedback, keyboard controls, and an interactive piano keyboard.
 
