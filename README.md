@@ -60,7 +60,26 @@ py -3.13 -m uvicorn app.main:app --host 127.0.0.1 --port 8000
 ```
 
 Open [http://127.0.0.1:8000](http://127.0.0.1:8000) in a browser. Keep the terminal window open while using the local application. Press **Ctrl+C** in that window to stop the server.
+## Troubleshooting
 
+### Application fails to start
+- Verify that Python 3.13 is installed.
+- Ensure web application dependencies are installed.
+- Check the terminal output for missing packages or configuration errors.
+
+### Audio upload fails
+- Ensure the recording is a valid WAV file.
+- Check that the recording is not empty.
+- Verify that the recording is within the supported file size and duration limits.
+
+### Voice input does not work
+- Allow microphone access when prompted.
+- Use Chrome for better speech recognition compatibility.
+- Check your internet connection.
+
+### Audio playback issues
+- Check browser audio settings.
+- Refresh the application if playback becomes unresponsive.
 ## API
 
 The FastAPI application provides these endpoints:
