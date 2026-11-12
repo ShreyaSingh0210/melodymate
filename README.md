@@ -116,24 +116,64 @@ Singing recordings are temporarily written to a file for analysis. The applicati
 
 ## Project structure
 
-```text
-app/
-  main.py             FastAPI application and API endpoints
-  simple_feedback.py  Concise singing feedback
-  static/
-    index.html        Accessible web interface
-    app.js            Voice guide and interactive behavior
-    style.css         Page styling
-core/
-  feedback.py         Pitch and note-sequence feedback
-  melody.py           Exercise data and melody comparison
-  midi_input.py       MIDI input support
-  notes.py            Note names and piano key mappings
-  pitch.py            Pitch tracking
-  segment.py          Note segmentation
-  synth.py            Reference note audio generation
-  timing.py           Timing feedback
-tests/                Automated tests
-docs/                 Project and accessibility documentation
-```
-```
+project/
+├── app/
+│   ├── __init__.py
+│   ├── main.py                 # FastAPI application and API endpoints
+│   ├── simple_feedback.py      # Concise singing feedback
+│   ├── dependencies.py         # Shared API dependencies
+│   ├── schemas.py              # Request and response models
+│   ├── config.py               # Application configuration
+│   └── static/
+│       ├── index.html          # Accessible web interface
+│       ├── app.js              # Voice guide and interactive behavior
+│       ├── style.css           # Responsive page styling
+│       └── assets/
+│           ├── icons/
+│           └── audio/          # Optional static audio assets
+│
+├── core/
+│   ├── __init__.py
+│   ├── feedback.py             # Pitch and note-sequence feedback
+│   ├── melody.py               # Exercise data and melody comparison
+│   ├── midi_input.py           # MIDI input support
+│   ├── notes.py                # Note names and piano key mappings
+│   ├── pitch.py                # Pitch tracking
+│   ├── segment.py              # Note segmentation
+│   ├── synth.py                # Reference note audio generation
+│   └── timing.py               # Timing feedback
+│
+├── tests/
+│   ├── __init__.py
+│   ├── test_api.py             # API endpoint tests
+│   ├── test_feedback.py        # Feedback logic tests
+│   ├── test_melody.py          # Melody comparison tests
+│   ├── test_pitch.py           # Pitch tracking tests
+│   ├── test_segment.py         # Note segmentation tests
+│   ├── test_synth.py           # Audio generation tests
+│   ├── test_timing.py          # Timing analysis tests
+│   └── fixtures/               # Reusable test data
+│
+├── docs/
+│   ├── README.md               # Project overview and setup
+│   ├── architecture.md         # Module relationships and data flow
+│   ├── api.md                  # API endpoint documentation
+│   ├── accessibility.md        # Accessibility decisions and testing
+│   ├── development.md          # Development and contribution guide
+│   └── testing.md              # How to run the test suite
+│
+├── scripts/
+│   ├── run_dev.py              # Optional development launcher
+│   └── check_audio.py          # Optional audio diagnostics
+│
+├── .github/
+│   └── workflows/
+│       └── tests.yml           # Automated tests on pull requests
+│
+├── .gitignore
+├── .env.example                # Example environment configuration
+├── pyproject.toml              # Dependencies, tooling and project metadata
+├── requirements.txt            # Pinned dependencies, if needed
+├── pytest.ini                  # Pytest configuration, if needed
+├── LICENSE
+└── README.md                   # Main project landing page
